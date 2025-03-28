@@ -1,7 +1,8 @@
 # webpack-sample
 
 A sample project to demonstrate the usage of webpack to bundle js files.
-It does not use babel since it uses web components which are natively supported on modern browsers.
+It does not use babel since it uses web components.
+All the code in this sample are natively supported on modern browsers.
 
 ## How to run
 
