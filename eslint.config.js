@@ -1,3 +1,4 @@
+// eslint.config.js
 import js from "@eslint/js";
 import eslintConfigPrettier from "eslint-config-prettier";
 import { defineConfig, globalIgnores } from "eslint/config";
@@ -7,17 +8,17 @@ export default defineConfig([
     {
         name: "webpack-sample/recommended-rules-override",
         files: ["**/*.js"],
-        plugins: { js },
-        extends: ["js/recommended"],
-        rules: {
-            semi: ["error", "always"],
-            quotes: ["error", "single"],
-            "no-duplicate-imports": "error",
-        },
         languageOptions: {
-            globals: globals.browser,
-            sourceType: "module",
             ecmaVersion: "latest",
+            sourceType: "module",
+            globals: globals.browser,
+        },
+        rules: {
+            ...js.configs.recommended.rules,
+            ...eslintConfigPrettier.rules, // disables conflicting rules with Prettier
+
+            semi: ["error", "always"],
+            "no-duplicate-imports": "error",
         },
     },
     globalIgnores([
@@ -26,5 +27,4 @@ export default defineConfig([
         "webpack.dev.js",
         "webpack.prod.js",
     ]),
-    eslintConfigPrettier,
 ]);
